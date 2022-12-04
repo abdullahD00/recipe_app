@@ -47,7 +47,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
   #animations
-  loading_animation_widget: ^1.2.0+3
+  lottie: ^2.0.0
   #state management
   provider: ^6.0.4
 # For information on the generic Dart part of this file, see the
