@@ -1,14 +1,14 @@
 import 'package:recipe/view/home/recipe/model/recipe.dart';
 
 abstract class IRecipeService {
-  //Add
-  Future<Recipe> addRecipe(Recipe myRecipe) async {
-    return myRecipe;
-  }
-
   //Get all RECİPE
   Future<List<Recipe>> findAllFood(List<Recipe> myRecipeList) async {
     return myRecipeList;
+  }
+
+  //Add
+  Future<Recipe> addRecipe(Recipe myRecipe) async {
+    return myRecipe;
   }
 
   //Delete RECİPE
