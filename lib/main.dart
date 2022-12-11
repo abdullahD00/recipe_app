@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:recipe/view/authenticate/splash/model/splash_model.dart';
 import 'package:recipe/view/authenticate/splash/view/splash_view.dart';
+// ignore: depend_on_referenced_packages
+import 'package:provider/provider.dart';
 
-void main() {
+main() {
   runApp(const MyApp());
 }
 
@@ -10,12 +13,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return MultiProvider(
+      providers: [
+        //Splash Screen Model
+        ChangeNotifierProvider<Splash>(
+          create: ((context) => Splash()),
+        )
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const SplashScreenView(),
       ),
-      home: const SplashScreenView(),
     );
   }
 }
