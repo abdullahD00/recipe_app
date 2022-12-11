@@ -7,26 +7,26 @@ class ScreenSize extends ChangeNotifier implements IScreenSize {
   late double width;
 
   @override
-  Future<double> getHeight(BuildContext context, double myHeight) async {
-    // TODO: implement getHeight
-    throw UnimplementedError();
+  Future<double> getHeight(BuildContext context) async {
+    double myGetHeight = putHeight(context) as double;
+    return myGetHeight;
   }
 
   @override
-  Future<double> getWidth(BuildContext context, double myWidth) async {
-    // TODO: implement getWidth
-    throw UnimplementedError();
+  Future<double> getWidth(BuildContext context) async {
+    double myGetWidth = putWidth(context) as double;
+    return myGetWidth;
   }
 
   @override
-  Future<double> putHeight(BuildContext context, double myHeight) async {
-    myHeight = Provider.of<ScreenSize>(context, listen: false).height;
+  Future<double> putHeight(BuildContext context) async {
+    double myHeight = Provider.of<ScreenSize>(context, listen: false).height;
     return myHeight;
   }
 
   @override
-  Future<double> putWidth(BuildContext context, double myWidth) async {
-    // TODO: implement putWidth
-    throw UnimplementedError();
+  Future<double> putWidth(BuildContext context) async {
+    double myWidth = Provider.of<ScreenSize>(context, listen: false).width;
+    return myWidth;
   }
 }
