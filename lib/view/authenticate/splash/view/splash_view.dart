@@ -12,8 +12,7 @@ class SplashScreenView extends SplashScreenViewModel {
   Widget build(BuildContext context) {
     return StatefulWrapper(
       onInit: () {
-        makeCheckInternetDefault(context);
-        checkEthernetConenction(context);
+        getStart(context);
       },
       child: Scaffold(
         backgroundColor: Colors.white,
