@@ -2,14 +2,14 @@ import 'package:flutter/widgets.dart';
 
 abstract class IScreenSize {
   //put HEIGHT
-  Future<void> putHeight(BuildContext context) async {}
+  void putHeight(BuildContext context) {}
 
   //put WIDTH
-  Future<void> putWidth(BuildContext context) async {}
+  void putWidth(BuildContext context) {}
 
   //get ScreenSize HEIGHT
-  Future<void> getHeight(BuildContext context) async {}
+  void getHeight(BuildContext context) {}
 
   //get ScreenSize WIDTH
-  Future<void> getWidth(BuildContext context) async {}
+  void getWidth(BuildContext context) {}
 }

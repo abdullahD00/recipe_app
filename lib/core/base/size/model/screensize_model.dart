@@ -7,26 +7,30 @@ class ScreenSize extends ChangeNotifier implements IScreenSize {
   late double width;
 
   @override
-  Future<double> getHeight(BuildContext context) async {
-    double myGetHeight = putHeight(context) as double;
+  double getHeight(BuildContext context) {
+    double myGetHeight = putHeight(context);
+    ChangeNotifier();
     return myGetHeight;
   }
 
   @override
-  Future<double> getWidth(BuildContext context) async {
-    double myGetWidth = putWidth(context) as double;
+  double getWidth(BuildContext context) {
+    double myGetWidth = putWidth(context);
+    ChangeNotifier();
     return myGetWidth;
   }
 
   @override
-  Future<double> putHeight(BuildContext context) async {
-    double myHeight = Provider.of<ScreenSize>(context, listen: false).height;
+  double putHeight(BuildContext context) {
+    double myHeight = MediaQuery.of(context).size.height;
+    Provider.of<ScreenSize>(context, listen: false).height = myHeight;
     return myHeight;
   }
 
   @override
-  Future<double> putWidth(BuildContext context) async {
-    double myWidth = Provider.of<ScreenSize>(context, listen: false).width;
+  double putWidth(BuildContext context) {
+    double myWidth = MediaQuery.of(context).size.width;
+    Provider.of<ScreenSize>(context, listen: false).width = myWidth;
     return myWidth;
   }
 }
