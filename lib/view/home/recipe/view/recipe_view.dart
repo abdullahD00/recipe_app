@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipe/core/constant/color/color_const.dart';
+import 'package:recipe/product/widget/button/recipe_floatactionbutton.dart';
 import 'package:recipe/product/widget/card/recipe_card.dart';
 import 'package:recipe/view/home/recipe/viewmodel/recipe_viewmode.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
@@ -37,21 +38,7 @@ class _RecipeViewState extends RecipeViewModel {
               );
             })),
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: RecipeColor.myPink,
-        child: Center(
-          child: IconButton(
-            // ignore: avoid_print
-            onPressed: () => print("object"),
-            icon: Icon(
-              Icons.no_food_sharp,
-              color: RecipeColor.white,
-            ),
-          ),
-        ),
-        // ignore: avoid_print
-        onPressed: () => print("object"),
-      ),
+      floatingActionButton: recipeAddFloatActionButton(),
     );
   }
 }
