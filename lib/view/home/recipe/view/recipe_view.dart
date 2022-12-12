@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:recipe/core/base/size/model/screensize_model.dart';
 import 'package:recipe/product/widget/card/recipe_card.dart';
 import 'package:recipe/view/home/recipe/viewmodel/recipe_viewmode.dart';
-// ignore: depend_on_referenced_packages
 import 'package:provider/provider.dart';
 
 class RecipeView extends StatefulWidget {
