@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipe/core/constant/color/color_const.dart';
 import 'package:recipe/product/widget/card/recipe_card.dart';
 import 'package:recipe/view/home/recipe/viewmodel/recipe_viewmode.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
@@ -14,7 +15,7 @@ class _RecipeViewState extends RecipeViewModel {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: _mycolor.whitePink,
+      backgroundColor: RecipeColor.lightPink,
       body: AnimationLimiter(
         child: GridView.count(
             crossAxisCount: 2,
@@ -27,24 +28,24 @@ class _RecipeViewState extends RecipeViewModel {
                   duration: const Duration(milliseconds: 3000),
                   child: FadeInAnimation(
                     child: RecipeCard(
-                        ellipticalRadius: const Radius.elliptical(20, 150),
-                        name: "name",
-                        time: 120,
-                        typeOfMeal: "typeOfMeal"),
+                      name: "name",
+                      time: 120,
+                      typeOfMeal: "typeOfMeal",
+                    ),
                   ),
                 ),
               );
             })),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: _mycolor.myPink,
+        backgroundColor: RecipeColor.myPink,
         child: Center(
           child: IconButton(
             // ignore: avoid_print
             onPressed: () => print("object"),
-            icon: const Icon(
+            icon: Icon(
               Icons.no_food_sharp,
-              color: Colors.white,
+              color: RecipeColor.white,
             ),
           ),
         ),
@@ -53,10 +54,4 @@ class _RecipeViewState extends RecipeViewModel {
       ),
     );
   }
-}
-
-// ignore: camel_case_types
-class _mycolor {
-  static Color myPink = const Color.fromRGBO(249, 97, 99, 1);
-  static Color whitePink = const Color.fromRGBO(244, 233, 233, 1);
 }
