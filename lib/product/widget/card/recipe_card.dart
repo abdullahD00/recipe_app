@@ -16,61 +16,67 @@ class RecipeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: Provider.of<ScreenSize>(context).getHeight(context) / 3,
-      width: Provider.of<ScreenSize>(context).getWidth(context) / 2.1,
-      child: Card(
-        color: Colors.white,
-        shadowColor: const Color.fromRGBO(249, 97, 99, 1),
-        elevation: 10,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topLeft: ellipticalRadius,
-            topRight: ellipticalRadius,
-            bottomLeft: ellipticalRadius,
-            bottomRight: ellipticalRadius,
-          ),
-          side: const BorderSide(
-            color: Color.fromRGBO(249, 97, 99, 1),
-            width: 1.5,
-          ),
+      width: Provider.of<ScreenSize>(context).getWidth(context) / 2.6,
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: Provider.of<ScreenSize>(context).getHeight(context) / 70,
+          vertical: Provider.of<ScreenSize>(context).getWidth(context) / 50,
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(
-              name,
-              style: Theme.of(context).textTheme.labelSmall?.merge(
-                    nameRecipeCard(),
+        child: Card(
+          color: Colors.white,
+          shadowColor: _mycolor.myPink,
+          elevation: 10,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: ellipticalRadius,
+              topRight: ellipticalRadius,
+              bottomLeft: ellipticalRadius,
+              bottomRight: ellipticalRadius,
+            ),
+            side: BorderSide(
+              color: _mycolor.myPink,
+              width: 1.5,
+            ),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(
+                name,
+                style: Theme.of(context).textTheme.labelSmall?.merge(
+                      nameRecipeCard(),
+                    ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.timer,
+                    color: _mycolor.myPink,
                   ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(
-                  Icons.timer,
-                  color: Color.fromRGBO(249, 97, 99, 1),
-                ),
-                Text(
-                  "$time",
-                  style: Theme.of(context).textTheme.displaySmall?.merge(
-                        timeRecipeCard(),
-                      ),
-                ),
-              ],
-            ),
-            Text(typeOfMeal,
-                style: Theme.of(context).textTheme.bodySmall?.merge(
-                      typeOfMealRecipeCard(),
-                    )),
-          ],
+                  Text(
+                    "$time",
+                    style: Theme.of(context).textTheme.displaySmall?.merge(
+                          timeRecipeCard(),
+                        ),
+                  ),
+                ],
+              ),
+              Text(typeOfMeal,
+                  style: Theme.of(context).textTheme.bodySmall?.merge(
+                        typeOfMealRecipeCard(),
+                      )),
+            ],
+          ),
         ),
       ),
     );
   }
 
   TextStyle typeOfMealRecipeCard() {
-    return const TextStyle(
+    return TextStyle(
       fontSize: 13.0,
-      color: Color.fromRGBO(249, 97, 99, 1),
+      color: _mycolor.myPink,
     );
   }
 
@@ -82,9 +88,14 @@ class RecipeCard extends StatelessWidget {
   }
 
   TextStyle nameRecipeCard() {
-    return const TextStyle(
+    return TextStyle(
       fontSize: 25.0,
-      color: Color.fromRGBO(249, 97, 99, 1),
+      color: _mycolor.myPink,
     );
   }
+}
+
+// ignore: camel_case_types
+class _mycolor {
+  static Color myPink = const Color.fromRGBO(249, 97, 99, 1);
 }
