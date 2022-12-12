@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:recipe/core/base/size/model/screensize_model.dart';
+import 'package:recipe/core/constant/color/color_const.dart';
 
 // ignore: must_be_immutable
 class RecipeCard extends StatelessWidget {
-  RecipeCard(
-      {Key? key, required this.ellipticalRadius, required this.name, required this.time, required this.typeOfMeal})
-      : super(key: key);
+  RecipeCard({Key? key, required this.name, required this.time, required this.typeOfMeal}) : super(key: key);
 
-  Radius ellipticalRadius;
+  Radius ellipticalRadius = const Radius.elliptical(20, 150);
   String name;
   int time;
   String typeOfMeal;
@@ -23,8 +22,8 @@ class RecipeCard extends StatelessWidget {
           vertical: Provider.of<ScreenSize>(context).getWidth(context) / 50,
         ),
         child: Card(
-          color: Colors.white,
-          shadowColor: _mycolor.myPink,
+          color: RecipeColor.white,
+          shadowColor: RecipeColor.myPink,
           elevation: 10,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
@@ -34,7 +33,7 @@ class RecipeCard extends StatelessWidget {
               bottomRight: ellipticalRadius,
             ),
             side: BorderSide(
-              color: _mycolor.myPink,
+              color: RecipeColor.myPink,
               width: 1.5,
             ),
           ),
@@ -52,7 +51,7 @@ class RecipeCard extends StatelessWidget {
                 children: [
                   Icon(
                     Icons.timer,
-                    color: _mycolor.myPink,
+                    color: RecipeColor.myPink,
                   ),
                   Text(
                     "$time",
@@ -76,13 +75,13 @@ class RecipeCard extends StatelessWidget {
   TextStyle typeOfMealRecipeCard() {
     return TextStyle(
       fontSize: 13.0,
-      color: _mycolor.myPink,
+      color: RecipeColor.myPink,
     );
   }
 
   TextStyle timeRecipeCard() {
-    return const TextStyle(
-      color: Colors.black,
+    return TextStyle(
+      color: RecipeColor.black,
       fontSize: 15.0,
     );
   }
@@ -90,12 +89,7 @@ class RecipeCard extends StatelessWidget {
   TextStyle nameRecipeCard() {
     return TextStyle(
       fontSize: 25.0,
-      color: _mycolor.myPink,
+      color: RecipeColor.myPink,
     );
   }
-}
-
-// ignore: camel_case_types
-class _mycolor {
-  static Color myPink = const Color.fromRGBO(249, 97, 99, 1);
 }
