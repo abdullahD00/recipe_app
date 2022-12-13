@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipe/view/authenticate/splash/model/splash_model.dart';
 import 'package:recipe/view/authenticate/splash/service/splash_service.dart';
-// ignore: depend_on_referenced_packages
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-// ignore: depend_on_referenced_packages
 import 'package:provider/provider.dart';
 import 'package:recipe/view/home/recipe/view/recipe_view.dart';
 
@@ -14,7 +12,6 @@ abstract class SplashScreenViewModel extends StatelessWidget implements ISplashS
 
   @override
   Future<void> checkEthernetConenction(BuildContext context) async {
-    // ignore: unused_local_variable
     bool result = await InternetConnectionChecker().hasConnection;
     if (result == true) {
       // ignore: use_build_context_synchronously
@@ -52,6 +49,18 @@ abstract class SplashScreenViewModel extends StatelessWidget implements ISplashS
   Future<void> getStart(BuildContext context) async {
     makeCheckInternetDefault(context);
     checkEthernetConenction(context);
-    skipNextPage(context);
+    if (Provider.of<Splash>(context, listen: false).checkEthernet) {
+      skipNextPage(context);
+    } else {
+      return showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) {
+          return const AlertDialog(
+            title: Text("No Internet Connection!"),
+          );
+        },
+      );
+    }
   }
 }

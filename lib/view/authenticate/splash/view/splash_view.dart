@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:recipe/core/constant/color/color_const.dart';
 import 'package:recipe/core/widget/wrapper/wrapper.dart';
 import 'package:recipe/view/authenticate/splash/model/splash_model.dart';
 import 'package:recipe/view/authenticate/splash/viewmodel/splash_viewmodel.dart';
@@ -15,7 +16,7 @@ class SplashScreenView extends SplashScreenViewModel {
         getStart(context);
       },
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: RecipeColor.lightPink,
         body: Center(
           child: Column(
             children: [
@@ -33,7 +34,6 @@ class SplashScreenView extends SplashScreenViewModel {
                 height: 250,
                 child: Provider.of<Splash>(context, listen: false).checkEthernet
                     ? Lottie.network(lottieUrlLoading)
-                    //
                     : const Text("No Ithernet!"),
               ),
             ],

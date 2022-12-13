@@ -26,7 +26,7 @@ class _RecipeViewState extends RecipeViewModel {
                 position: index,
                 columnCount: 2,
                 child: ScaleAnimation(
-                  duration: const Duration(milliseconds: 3000),
+                  duration: const Duration(milliseconds: 700),
                   child: FadeInAnimation(
                     child: RecipeCard(
                       name: "name",

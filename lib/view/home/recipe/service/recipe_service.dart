@@ -2,8 +2,8 @@ import 'package:recipe/view/home/recipe/model/recipe.dart';
 
 abstract class IRecipeService {
   //Get all RECİPE
-  Future<List<Recipe>> findAllFood(List<Recipe> myRecipeList) async {
-    return myRecipeList;
+  Future<List<Recipe>?> findAllFood() async {
+    return null;
   }
 
   //Add
