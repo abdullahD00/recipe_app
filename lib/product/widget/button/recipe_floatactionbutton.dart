@@ -8,7 +8,7 @@ Radius ellipticalRadiusBottom = const Radius.elliptical(100, 200);
 AnimationConfiguration recipeAddFloatActionButton() {
   return AnimationConfiguration.synchronized(
     child: ScaleAnimation(
-      duration: const Duration(milliseconds: 3000),
+      duration: const Duration(milliseconds: 700),
       child: FadeInAnimation(
         child: FloatingActionButton(
           shape: RoundedRectangleBorder(

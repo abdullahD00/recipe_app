@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class StatefulWrapper extends StatefulWidget {
-  final Function onInit;
+  final VoidCallback onInit;
   final Widget child;
   const StatefulWrapper({super.key, required this.onInit, required this.child});
   @override
@@ -12,8 +12,10 @@ class StatefulWrapper extends StatefulWidget {
 class _StatefulWrapperState extends State<StatefulWrapper> {
   @override
   void initState() {
-    widget.onInit();
-    super.initState();
+    setState(() {
+      widget.onInit();
+      super.initState();
+    });
   }
 
   @override

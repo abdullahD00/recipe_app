@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 
 abstract class ISplashService {
   //check ınternet connection
-  Future<void> checkEthernetConenction(BuildContext context) async {}
+  Future<void> checkEthernetConnection(BuildContext context) async {}
   //Change checkInternet Parametre
-  Future<void> changeCheckInternet(BuildContext context) async {}
+  void changeCheckInternet(BuildContext context) {}
   //Make checkInternet Default
-  Future<void> makeCheckInternetDefault(BuildContext context) async {}
+  void makeCheckInternetDefault(BuildContext context) {}
   //go to NEXT PAGE
   Future<void> skipNextPage(BuildContext context) async {}
   //get Started, take all func to one func

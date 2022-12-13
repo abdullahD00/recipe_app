@@ -11,7 +11,7 @@ abstract class SplashScreenViewModel extends StatelessWidget implements ISplashS
   final String lottieUrlLoading = "https://assets10.lottiefiles.com/private_files/lf30_cjoryulu.json";
 
   @override
-  Future<void> checkEthernetConenction(BuildContext context) async {
+  Future<void> checkEthernetConnection(BuildContext context) async {
     bool result = await InternetConnectionChecker().hasConnection;
     if (result == true) {
       // ignore: use_build_context_synchronously
@@ -20,47 +20,35 @@ abstract class SplashScreenViewModel extends StatelessWidget implements ISplashS
       print("Internet Connection available!");
     } else {
       // ignore: use_build_context_synchronously
-      changeCheckInternet(context);
+      makeCheckInternetDefault(context);
       // ignore: avoid_print
       print("Internet Connection is not available!");
     }
   }
 
   @override
-  Future<void> changeCheckInternet(BuildContext context) async {
+  void changeCheckInternet(BuildContext context) {
     Provider.of<Splash>(context, listen: false).checkEthernet =
         !Provider.of<Splash>(context, listen: false).checkEthernet;
-    ChangeNotifier();
   }
 
   @override
-  Future<void> makeCheckInternetDefault(BuildContext context) async {
+  void makeCheckInternetDefault(BuildContext context) {
     Provider.of<Splash>(context, listen: false).checkEthernet = false;
   }
 
   @override
   Future<void> skipNextPage(BuildContext context) async {
-    Future.delayed(const Duration(seconds: 5), () {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const RecipeView()));
-    });
+    if (Provider.of<Splash>(context, listen: false).checkEthernet == true) {
+      Future.delayed(const Duration(seconds: 6), () {
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const RecipeView()));
+      });
+    } else {}
   }
 
   @override
   Future<void> getStart(BuildContext context) async {
-    makeCheckInternetDefault(context);
-    checkEthernetConenction(context);
-    if (Provider.of<Splash>(context, listen: false).checkEthernet) {
-      skipNextPage(context);
-    } else {
-      return showDialog<void>(
-        context: context,
-        barrierDismissible: false,
-        builder: (context) {
-          return const AlertDialog(
-            title: Text("No Internet Connection!"),
-          );
-        },
-      );
-    }
+    checkEthernetConnection(context);
+    skipNextPage(context);
   }
 }
