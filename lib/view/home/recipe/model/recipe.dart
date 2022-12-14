@@ -2,7 +2,7 @@ class Recipe {
   int? id;
   String? name;
   String? description;
-  int? time;
+  double? time;
   String? typeOfMeal;
 
   Recipe({this.id, this.name, this.description, this.time, this.typeOfMeal});

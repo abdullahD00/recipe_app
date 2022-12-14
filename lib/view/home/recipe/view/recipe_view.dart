@@ -21,7 +21,7 @@ class _RecipeViewState extends RecipeViewModel {
         child: GridView.count(
             crossAxisCount: 2,
             crossAxisSpacing: 10,
-            children: List.generate(7, (index) {
+            children: List.generate(recipeList!.length, (index) {
               return AnimationConfiguration.staggeredGrid(
                 position: index,
                 columnCount: 2,
@@ -29,9 +29,9 @@ class _RecipeViewState extends RecipeViewModel {
                   duration: const Duration(milliseconds: 700),
                   child: FadeInAnimation(
                     child: RecipeCard(
-                      name: "name",
-                      time: 120,
-                      typeOfMeal: "typeOfMeal",
+                      name: recipeList![index].name ?? "name could not be loaded",
+                      time: recipeList![index].time!,
+                      typeOfMeal: recipeList![index].typeOfMeal ?? "Type of Meal could not be loaded",
                     ),
                   ),
                 ),

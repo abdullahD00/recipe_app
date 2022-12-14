@@ -9,7 +9,7 @@ class RecipeCard extends StatelessWidget {
 
   Radius ellipticalRadius = const Radius.elliptical(20, 150);
   String name;
-  int time;
+  double time;
   String typeOfMeal;
   @override
   Widget build(BuildContext context) {
