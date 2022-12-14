@@ -38,7 +38,7 @@ class _RecipeViewState extends RecipeViewModel {
               );
             })),
       ),
-      floatingActionButton: recipeAddFloatActionButton(),
+      floatingActionButton: recipeAddFloatActionButton(context),
     );
   }
 }

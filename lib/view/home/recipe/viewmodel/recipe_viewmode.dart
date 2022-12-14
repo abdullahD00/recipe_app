@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -10,26 +8,27 @@ import 'package:recipe/view/home/recipe/view/recipe_view.dart';
 
 abstract class RecipeViewModel extends State<RecipeView> implements IRecipeService {
   var myDio = Dio();
-  RecipeViewModel() : myDio = Dio(BaseOptions(baseUrl: 'URL'));
+  RecipeViewModel() : myDio = Dio(BaseOptions(baseUrl: 'https://localhost:8080/api/food'));
   List<Recipe>? recipeList;
   @override
   void initState() {
+    findAllFood().then((value) {
+      setState(() {
+        recipeList != value;
+      });
+    });
     super.initState();
-    // ignore: unrelated_type_equality_checks
-    recipeList != findAllFood();
-    findAllFood();
   }
 
   @override
   Future<List<Recipe>?> findAllFood() async {
     try {
       final response = await myDio.get(RecipeServicePaths.recipe.name);
-      if (response.statusCode == HttpStatus.ok) {
-        final datas = response.data;
-        if (datas is List) {
-          return datas.map((e) => Recipe.fromJson(e)).toList();
-        }
-      } else {}
+
+      final datas = response.data;
+      if (datas is List) {
+        return datas.map((e) => Recipe.fromJson(e)).toList();
+      }
     } on DioError catch (exception) {
       _ShowDebug.showDioError(exception, this);
     }
@@ -37,36 +36,30 @@ abstract class RecipeViewModel extends State<RecipeView> implements IRecipeServi
   }
 
   @override
-  Future<bool> addRecipe(Recipe myRecipe) async {
+  Future<void> addRecipe(Recipe myRecipe) async {
     try {
       final response = await myDio.post(RecipeServicePaths.recipe.name, data: myRecipe);
-      return response.statusCode == HttpStatus.ok;
     } on DioError catch (error) {
       _ShowDebug.showDioError(error, this);
     }
-    return false;
   }
 
   @override
-  Future<bool> deleteRecipeById(int id) async {
+  Future<void> deleteRecipeById(int id) async {
     try {
       final response = await myDio.delete('${RecipeServicePaths.recipe.name}/$id');
-      return response.statusCode == HttpStatus.ok;
     } on DioError catch (error) {
       _ShowDebug.showDioError(error, this);
     }
-    return false;
   }
 
   @override
-  Future<bool> updateRecipe(Recipe myCurrentRecipe, int id) async {
+  Future<void> updateRecipe(Recipe myCurrentRecipe, int id) async {
     try {
       final response = await myDio.put('${RecipeServicePaths.recipe.name}/$id', data: myCurrentRecipe);
-      response.statusCode == HttpStatus.ok;
     } on DioError catch (error) {
       _ShowDebug.showDioError(error, this);
     }
-    return false;
   }
 }
 

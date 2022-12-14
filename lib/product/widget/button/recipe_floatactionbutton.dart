@@ -5,7 +5,7 @@ import 'package:recipe/core/constant/color/color_const.dart';
 Radius ellipticalRadiusTop = const Radius.elliptical(200, 100);
 Radius ellipticalRadiusBottom = const Radius.elliptical(100, 200);
 
-AnimationConfiguration recipeAddFloatActionButton() {
+AnimationConfiguration recipeAddFloatActionButton(BuildContext context) {
   return AnimationConfiguration.synchronized(
     child: ScaleAnimation(
       duration: const Duration(milliseconds: 700),
@@ -31,7 +31,13 @@ AnimationConfiguration recipeAddFloatActionButton() {
             ),
           ),
           // ignore: avoid_print
-          onPressed: () => print("object"),
+          onPressed: () {
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return const AlertDialog();
+                });
+          },
         ),
       ),
     ),
