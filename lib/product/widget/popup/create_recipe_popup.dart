@@ -12,6 +12,7 @@ class CreateRecipePopUp extends StatelessWidget {
     var nameTextEditingController = TextEditingController();
     var timeTextEditingController = TextEditingController();
     var typeTextEditingController = TextEditingController();
+    var descriptionTextEditingController = TextEditingController();
     return AlertDialog(
       backgroundColor: RecipeColor.lightPink,
       title: Text(
@@ -21,14 +22,15 @@ class CreateRecipePopUp extends StatelessWidget {
             ),
       ),
       content: SizedBox(
-        height: Provider.of<ScreenSize>(context, listen: false).getHeight(context) / 1.5,
+        height: Provider.of<ScreenSize>(context, listen: false).getHeight(context),
         width: Provider.of<ScreenSize>(context, listen: false).getWidth(context),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // const Text("Name"),
             Gradienttextfield(
-              height: Provider.of<ScreenSize>(context).getHeight(context) / 30,
+              height: Provider.of<ScreenSize>(context).getHeight(context) / 15,
               width: Provider.of<ScreenSize>(context).getWidth(context) / 2,
               colors: [
                 RecipeColor.lightPink,
@@ -36,8 +38,69 @@ class CreateRecipePopUp extends StatelessWidget {
                 RecipeColor.darkPink,
               ],
               text: "Name",
+              fontSize: 15,
+              fontColor: RecipeColor.black,
               controller: nameTextEditingController,
+              fontWeight: FontWeight.w400,
+              radius: 2,
             ),
+            Gradienttextfield(
+              height: Provider.of<ScreenSize>(context).getHeight(context) / 15,
+              width: Provider.of<ScreenSize>(context).getWidth(context) / 2,
+              colors: [
+                RecipeColor.lightPink,
+                RecipeColor.myPink,
+                RecipeColor.darkPink,
+              ],
+              text: "Time",
+              fontSize: 15,
+              fontColor: RecipeColor.black,
+              controller: timeTextEditingController,
+              fontWeight: FontWeight.w400,
+              radius: 2,
+            ),
+            Gradienttextfield(
+              height: Provider.of<ScreenSize>(context).getHeight(context) / 15,
+              width: Provider.of<ScreenSize>(context).getWidth(context) / 2,
+              colors: [
+                RecipeColor.lightPink,
+                RecipeColor.myPink,
+                RecipeColor.darkPink,
+              ],
+              text: "Type",
+              fontSize: 15,
+              fontColor: RecipeColor.black,
+              controller: typeTextEditingController,
+              fontWeight: FontWeight.w400,
+              radius: 2,
+            ),
+            Gradienttextfield(
+              height: Provider.of<ScreenSize>(context).getHeight(context) / 15,
+              width: Provider.of<ScreenSize>(context).getWidth(context) / 2,
+              colors: [
+                RecipeColor.lightPink,
+                RecipeColor.myPink,
+                RecipeColor.darkPink,
+              ],
+              text: "Description",
+              fontSize: 15,
+              fontColor: RecipeColor.black,
+              controller: descriptionTextEditingController,
+              fontWeight: FontWeight.w400,
+              radius: 2,
+            ),
+            Center(
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: RecipeColor.myPink,
+                ),
+                onPressed: () {
+                  // ignore: avoid_print
+                  print("create button clicked");
+                },
+                child: const Text("CREATE"),
+              ),
+            )
           ],
         ),
       ),
@@ -52,3 +115,4 @@ class CreateRecipePopUp extends StatelessWidget {
     );
   }
 }
+//list view kullan cotroller +1 liste üzerinden çek 4 tane aynı widget'ı kullanma!!!

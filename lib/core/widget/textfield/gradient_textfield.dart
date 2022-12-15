@@ -10,6 +10,7 @@ class Gradienttextfield extends StatefulWidget {
       required this.hintText,
       this.radius,
       required this.controller,
+      required this.inputType,
       this.fontColor,
       this.fontWeight,
       this.fontSize})
@@ -24,7 +25,7 @@ class Gradienttextfield extends StatefulWidget {
   Color? fontColor;
   FontWeight? fontWeight;
   double? fontSize;
-
+  TextInputType inputType;
   @override
   _GradienttextfieldState createState() => _GradienttextfieldState();
 }
@@ -33,7 +34,7 @@ class _GradienttextfieldState extends State<Gradienttextfield> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 20.0, right: 20),
+      padding: const EdgeInsets.only(left: 20.0, right: 20, top: 50),
       child: Container(
         height: widget.height,
         width: widget.width,
@@ -45,6 +46,10 @@ class _GradienttextfieldState extends State<Gradienttextfield> {
         ),
         child: TextField(
           controller: widget.controller,
+          minLines: 2,
+          maxLines: 5,
+          keyboardType: widget.inputType,
+          cursorColor: RecipeColor.darkPink,
           decoration: InputDecoration(
             hintText: widget.hintText,
             hintStyle: TextStyle(
