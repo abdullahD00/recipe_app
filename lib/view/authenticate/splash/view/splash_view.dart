@@ -24,10 +24,8 @@ class SplashScreenView extends SplashScreenViewModel {
               Lottie.network(lottieUrlThinking),
               Text(
                 "RECIPE",
-                style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                      fontSize: 60,
-                      fontWeight: FontWeight.w300,
-                      color: Colors.pink,
+                style: Theme.of(context).textTheme.displayLarge?.merge(
+                      recipeTitleTextStyle(),
                     ),
               ),
               SizedBox(
@@ -40,6 +38,14 @@ class SplashScreenView extends SplashScreenViewModel {
           ),
         ),
       ),
+    );
+  }
+
+  TextStyle recipeTitleTextStyle() {
+    return TextStyle(
+      fontSize: 60,
+      fontWeight: FontWeight.w300,
+      color: RecipeColor.darkPink,
     );
   }
 }
