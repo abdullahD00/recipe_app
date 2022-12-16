@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         //Screen Size Provider
         ChangeNotifierProvider<ScreenSize>(
           create: ((context) => ScreenSize()),
-        )
+        ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

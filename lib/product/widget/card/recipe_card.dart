@@ -5,7 +5,12 @@ import 'package:recipe/core/constant/color/color_const.dart';
 
 // ignore: must_be_immutable
 class RecipeCard extends StatelessWidget {
-  RecipeCard({Key? key, required this.name, required this.time, required this.typeOfMeal}) : super(key: key);
+  RecipeCard({
+    Key? key,
+    required this.name,
+    required this.time,
+    required this.typeOfMeal,
+  }) : super(key: key);
 
   Radius ellipticalRadius = const Radius.elliptical(20, 150);
   String name;

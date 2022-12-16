@@ -9,7 +9,9 @@ import 'package:recipe/core/widget/textfield/gradient_textfield.dart';
 import 'package:recipe/product/enum/textfield_hinttext.dart';
 
 class CreateRecipePopUp extends StatelessWidget {
-  const CreateRecipePopUp({super.key});
+  const CreateRecipePopUp({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -70,10 +72,20 @@ class CreateRecipePopUp extends StatelessWidget {
           children: [
             Center(
               child: GeneralButton(
-                onPressedFun: () {},
-                buttonWidget: const Text("CREATE"),
-                heightButton: 50.0,
-                widthButton: 150.0,
+                onPressedFun: () {
+                  //add
+                },
+                buttonWidget: Text(
+                  "CREATE",
+                  style: Theme.of(context).textTheme.button?.merge(
+                        TextStyle(
+                          color: RecipeColor.white,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                ),
+                heightButton: Provider.of<ScreenSize>(context).getHeight(context) / 15,
+                widthButton: Provider.of<ScreenSize>(context).getWidth(context) / 2.5,
               ),
             ),
           ],
