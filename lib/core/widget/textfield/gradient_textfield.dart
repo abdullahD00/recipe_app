@@ -34,7 +34,7 @@ class _GradienttextfieldState extends State<Gradienttextfield> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 20.0, right: 20, top: 50),
+      padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 15),
       child: Container(
         height: widget.height,
         width: widget.width,
