@@ -7,9 +7,12 @@ import 'package:recipe/core/constant/color/color_const.dart';
 import 'package:recipe/core/widget/button/customized_button.dart';
 import 'package:recipe/core/widget/textfield/gradient_textfield.dart';
 import 'package:recipe/product/enum/textfield_hinttext.dart';
+import 'package:recipe/product/mixin/recipe_mixin.dart/recipe_service_mixin.dart';
+import 'package:recipe/view/home/recipe/model/recipe.dart';
 
-class CreateRecipePopUp extends StatelessWidget {
-  const CreateRecipePopUp({
+// ignore: must_be_immutable
+class CreateRecipePopUp extends StatelessWidget with RecipeServiceFuncMix {
+  CreateRecipePopUp({
     super.key,
   });
 
@@ -73,7 +76,15 @@ class CreateRecipePopUp extends StatelessWidget {
             Center(
               child: GeneralButton(
                 onPressedFun: () {
-                  //add
+                  addRecipe(
+                    Recipe(
+                        id: 1,
+                        name: nameTextEditingController.text,
+                        time: double.tryParse(timeTextEditingController.text),
+                        typeOfMeal: typeTextEditingController.text,
+                        description: descriptionTextEditingController.text),
+                  );
+                  //create modal bottomsheet,
                 },
                 buttonWidget: Text(
                   "CREATE",

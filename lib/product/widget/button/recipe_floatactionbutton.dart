@@ -31,7 +31,7 @@ AnimationConfiguration recipeAddFloatActionButton(BuildContext context) {
             showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return const CreateRecipePopUp();
+                  return CreateRecipePopUp();
                 });
           },
         ),
