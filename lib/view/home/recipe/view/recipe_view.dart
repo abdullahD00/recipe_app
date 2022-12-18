@@ -29,9 +29,11 @@ class _RecipeViewState extends RecipeViewModel {
                   duration: const Duration(milliseconds: 700),
                   child: FadeInAnimation(
                     child: RecipeCard(
+                      id: recipeList![index].id!,
                       name: recipeList![index].name ?? "name could not be loaded",
                       time: recipeList![index].time!,
                       typeOfMeal: recipeList![index].typeOfMeal ?? "Type of Meal could not be loaded",
+                      description: recipeList![index].description ?? "description could not be loaded",
                     ),
                   ),
                 ),

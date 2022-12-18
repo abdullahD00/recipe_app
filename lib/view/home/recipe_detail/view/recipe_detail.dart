@@ -2,50 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:recipe/core/base/size/model/screensize_model.dart';
 import 'package:recipe/core/constant/color/color_const.dart';
-import 'package:recipe/view/home/recipe_detail/view/recipe_detail.dart';
+import 'package:recipe/product/widget/popup/recipe_detail_popup.dart';
 
 // ignore: must_be_immutable
-class RecipeCard extends StatelessWidget {
-  RecipeCard({
-    Key? key,
+class RecipeDetailView extends StatefulWidget {
+  RecipeDetailView({
+    super.key,
     required this.id,
     required this.name,
     required this.time,
-    required this.typeOfMeal,
+    required this.type,
     required this.description,
-  }) : super(key: key);
-
-  Radius ellipticalRadius = const Radius.elliptical(20, 150);
+  });
   int id;
-  String name;
-  double time;
-  String typeOfMeal;
-  String description;
+  String? name;
+  double? time;
+  String? type;
+  String? description;
+  @override
+  State<RecipeDetailView> createState() => _RecipeDetailViewState();
+}
+
+class _RecipeDetailViewState extends State<RecipeDetailView> {
+  Radius ellipticalRadius = const Radius.elliptical(20, 150);
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: Provider.of<ScreenSize>(context).getHeight(context) / 3,
-      width: Provider.of<ScreenSize>(context).getWidth(context) / 2.6,
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: Provider.of<ScreenSize>(context).getHeight(context) / 70,
-          vertical: Provider.of<ScreenSize>(context).getWidth(context) / 50,
-        ),
-        child: InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => RecipeDetailView(
-                  id: id,
-                  name: name,
-                  time: time,
-                  type: typeOfMeal,
-                  description: description,
-                ),
-              ),
-            );
-          },
+    return Scaffold(
+      backgroundColor: RecipeColor.lightPink,
+      body: Center(
+        child: SizedBox(
+          height: Provider.of<ScreenSize>(context).getHeight(context) / 1.1,
+          width: Provider.of<ScreenSize>(context).getWidth(context) / 1.1,
           child: Card(
             color: RecipeColor.white,
             shadowColor: RecipeColor.myPink,
@@ -65,8 +52,15 @@ class RecipeCard extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 20.0),
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: RecipeDetailPopUp(id: widget.id),
+                  ),
+                ),
                 Text(
-                  name,
+                  widget.name ?? " ",
                   style: Theme.of(context).textTheme.labelSmall?.merge(
                         nameRecipeCard(),
                       ),
@@ -79,7 +73,7 @@ class RecipeCard extends StatelessWidget {
                       color: RecipeColor.myPink,
                     ),
                     Text(
-                      "$time",
+                      widget.time!.toString(),
                       style: Theme.of(context).textTheme.displaySmall?.merge(
                             timeRecipeCard(),
                           ),
@@ -87,7 +81,13 @@ class RecipeCard extends StatelessWidget {
                   ],
                 ),
                 Text(
-                  typeOfMeal,
+                  widget.type ?? "",
+                  style: Theme.of(context).textTheme.bodySmall?.merge(
+                        typeOfMealRecipeCard(),
+                      ),
+                ),
+                Text(
+                  widget.description ?? "",
                   style: Theme.of(context).textTheme.bodySmall?.merge(
                         typeOfMealRecipeCard(),
                       ),
@@ -104,6 +104,7 @@ class RecipeCard extends StatelessWidget {
     return TextStyle(
       fontSize: 13.0,
       color: RecipeColor.myPink,
+      overflow: TextOverflow.visible,
     );
   }
 
