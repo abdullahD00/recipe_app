@@ -8,7 +8,7 @@ import 'package:recipe/core/widget/button/customized_button.dart';
 import 'package:recipe/core/widget/textfield/gradient_textfield.dart';
 import 'package:recipe/product/enum/textfield_hinttext.dart';
 import 'package:recipe/product/mixin/recipe_mixin.dart/recipe_service_mixin.dart';
-import 'package:recipe/product/widget/popup/bottom_sheet/bottomsheet_recipe_create.dart';
+import 'package:recipe/product/widget/snackbar/bottomsheet_recipe_create.dart';
 import 'package:recipe/view/home/recipe/model/recipe.dart';
 
 // ignore: must_be_immutable
@@ -35,6 +35,7 @@ class CreateRecipePopUp extends StatelessWidget with RecipeServiceFuncMix {
       TextInputType.name,
       TextInputType.name,
     ];
+
     return AlertDialog(
       backgroundColor: RecipeColor.lightPink,
       title: Center(
@@ -112,6 +113,14 @@ class CreateRecipePopUp extends StatelessWidget with RecipeServiceFuncMix {
       fontSize: 30,
       fontWeight: FontWeight.w300,
       color: Colors.pink,
+    );
+  }
+
+  TextStyle showBottomSheetTextStyle() {
+    return TextStyle(
+      fontSize: 20,
+      color: RecipeColor.white,
+      fontWeight: FontWeight.w400,
     );
   }
 }

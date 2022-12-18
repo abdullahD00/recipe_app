@@ -8,11 +8,14 @@ class GeneralButton extends StatefulWidget {
     required this.buttonWidget,
     required this.heightButton,
     required this.widthButton,
+    this.buttonColor,
   });
+
   VoidCallback? onPressedFun;
   Widget? buttonWidget;
   double? heightButton;
   double? widthButton;
+  Color? buttonColor;
   @override
   State<GeneralButton> createState() => _GeneralButtonState();
 }
@@ -28,7 +31,7 @@ class _GeneralButtonState extends State<GeneralButton> {
         child: ElevatedButton(
           onPressed: widget.onPressedFun,
           style: ElevatedButton.styleFrom(
-            backgroundColor: RecipeColor.myPink,
+            backgroundColor: widget.buttonColor ?? RecipeColor.myPink,
             shape: const StadiumBorder(),
           ),
           child: widget.buttonWidget,
