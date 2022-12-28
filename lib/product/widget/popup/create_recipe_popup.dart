@@ -8,8 +8,8 @@ import 'package:recipe/core/widget/button/customized_button.dart';
 import 'package:recipe/core/widget/textfield/gradient_textfield.dart';
 import 'package:recipe/product/enum/textfield_hinttext.dart';
 import 'package:recipe/product/mixin/recipe_mixin.dart/recipe_service_mixin.dart';
+import 'package:recipe/product/widget/popup/create_ingredient_popup.dart';
 import 'package:recipe/product/widget/snackbar/bottomsheet_recipe_create.dart';
-import 'package:recipe/view/home/recipe/model/recipe.dart';
 
 // ignore: must_be_immutable
 class CreateRecipePopUp extends StatelessWidget with RecipeServiceFuncMix {
@@ -70,32 +70,50 @@ class CreateRecipePopUp extends StatelessWidget with RecipeServiceFuncMix {
         ),
       ),
       actions: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Center(
               child: GeneralButton(
                 onPressedFun: () {
+                  const CreateIngredientPopUp();
+                },
+                buttonWidget: Text(
+                  "INGREDIENT",
+                  style: Theme.of(context).textTheme.button?.merge(
+                        buttonTextStyle(),
+                      ),
+                ),
+                heightButton: Provider.of<ScreenSize>(context).getHeight(context) / 15,
+                widthButton: Provider.of<ScreenSize>(context).getWidth(context) / 2.5,
+              ),
+            ),
+            Center(
+              child: GeneralButton(
+                onPressedFun: () {
                   print(recipeList!);
-                  addRecipe(
-                    Recipe(
-                      id: 1,
-                      name: "makarna", //nameTextEditingController.text,
-                      time: 15.0, //double.tryParse(timeTextEditingController.text),
-                      typeOfMeal: "ana yemek", //typeTextEditingController.text,
-                      description: "leziz",
-                    ), //descriptionTextEditingController.text),
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CreateIngredientPopUp(),
+                    ),
                   );
+                  // addRecipe(
+                  //   Recipe(
+                  //     id: 1,
+                  //     name: "makarna", //nameTextEditingController.text,
+                  //     time: 15.0, //double.tryParse(timeTextEditingController.text),
+                  //     typeOfMeal: "ana yemek", //typeTextEditingController.text,
+                  //     description: "leziz",
+                  //   ), //descriptionTextEditingController.text),
+                  // );
                   bottomSheetRecipeCreate(context);
                   //go genel recipe list
                 },
                 buttonWidget: Text(
                   "CREATE",
                   style: Theme.of(context).textTheme.button?.merge(
-                        TextStyle(
-                          color: RecipeColor.white,
-                          fontWeight: FontWeight.w400,
-                        ),
+                        buttonTextStyle(),
                       ),
                 ),
                 heightButton: Provider.of<ScreenSize>(context).getHeight(context) / 15,
@@ -105,6 +123,13 @@ class CreateRecipePopUp extends StatelessWidget with RecipeServiceFuncMix {
           ],
         ),
       ],
+    );
+  }
+
+  TextStyle buttonTextStyle() {
+    return TextStyle(
+      color: RecipeColor.white,
+      fontWeight: FontWeight.w400,
     );
   }
 

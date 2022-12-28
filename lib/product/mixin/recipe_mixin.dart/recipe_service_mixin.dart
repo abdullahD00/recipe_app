@@ -5,13 +5,13 @@ import 'package:recipe/view/home/recipe/model/recipe.dart';
 import 'package:recipe/view/home/recipe/service/recipe_service.dart';
 
 mixin RecipeServiceFuncMix implements IRecipeService {
-  var myDio = Dio(BaseOptions(baseUrl: 'localhost:8080/api/'));
+  var myDio = Dio(BaseOptions(baseUrl: 'localhost:8080/api/food/'));
 
   List<Recipe>? recipeList = [];
   @override
   Future<List<Recipe>?> findAllFood() async {
     try {
-      final response = await myDio.get(RecipeServicePaths.food.name);
+      final response = await myDio.get(RecipeServiceOperations.all.name);
 
       final datas = response.data;
       if (datas is List) {
@@ -26,13 +26,7 @@ mixin RecipeServiceFuncMix implements IRecipeService {
   @override
   Future<void> addRecipe(Recipe myRecipe) async {
     try {
-      var myResponse = await myDio.post(RecipeServicePaths.food.name, data: {
-        'id': 1,
-        'name': 'makarna',
-        'description': 'nice food',
-        'time': 15.0,
-        'typeOfMeal': 'nice food two',
-      });
+      var myResponse = await myDio.post(RecipeServiceOperations.add.name, data: myRecipe);
     } on DioError catch (error) {
       _ShowDebug.showDioError(error, this);
     }

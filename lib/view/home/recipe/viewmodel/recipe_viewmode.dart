@@ -7,7 +7,7 @@ abstract class RecipeViewModel extends State<RecipeView> with RecipeServiceFuncM
   void initState() {
     findAllFood().then((value) {
       setState(() {
-        recipeList != value;
+        recipeList = value;
       });
     });
     super.initState();

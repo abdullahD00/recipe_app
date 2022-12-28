@@ -25,7 +25,7 @@ class Gradienttextfield extends StatefulWidget {
   Color? fontColor;
   FontWeight? fontWeight;
   double? fontSize;
-  TextInputType inputType;
+  TextInputType? inputType;
   @override
   _GradienttextfieldState createState() => _GradienttextfieldState();
 }
@@ -50,7 +50,7 @@ class _GradienttextfieldState extends State<Gradienttextfield> {
           controller: widget.controller,
           minLines: 2,
           maxLines: 5,
-          keyboardType: widget.inputType,
+          keyboardType: widget.inputType ?? TextInputType.name,
           cursorColor: RecipeColor.darkPink,
           decoration: InputDecoration(
             hintText: widget.hintText,
