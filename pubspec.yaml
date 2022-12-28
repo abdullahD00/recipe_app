@@ -37,6 +37,7 @@ dependencies:
   lottie: ^2.0.0
   #ethernet connection check
   internet_connection_checker: ^1.0.0+1
+  permission_handler: ^10.2.0
   #animation grid view
   flutter_staggered_animations: ^1.1.1
   #API connection

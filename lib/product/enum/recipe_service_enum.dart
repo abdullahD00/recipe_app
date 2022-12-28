@@ -1,3 +1,3 @@
-enum RecipeServicePaths { recipe, ingredient }
+enum RecipeServicePaths { food, ingredient }
 
 enum RecipeQueryPaths { postId }

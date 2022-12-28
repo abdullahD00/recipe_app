@@ -40,8 +40,13 @@ abstract class SplashScreenViewModel extends StatelessWidget implements ISplashS
   @override
   Future<void> skipNextPage(BuildContext context) async {
     if (Provider.of<Splash>(context, listen: false).checkEthernet == true) {
-      Future.delayed(const Duration(seconds: 6), () {
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const RecipeView()));
+      Future.delayed(const Duration(seconds: 7), () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const RecipeView(),
+          ),
+        );
       });
     } else {}
   }

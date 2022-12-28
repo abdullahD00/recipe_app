@@ -13,9 +13,7 @@ import 'package:recipe/view/home/recipe/model/recipe.dart';
 
 // ignore: must_be_immutable
 class CreateRecipePopUp extends StatelessWidget with RecipeServiceFuncMix {
-  CreateRecipePopUp({
-    super.key,
-  });
+  CreateRecipePopUp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +28,8 @@ class CreateRecipePopUp extends StatelessWidget with RecipeServiceFuncMix {
       descriptionTextEditingController,
     ];
     List<TextInputType> textInputType = [
-      TextInputType.name,
       TextInputType.number,
+      TextInputType.name,
       TextInputType.name,
       TextInputType.name,
     ];
@@ -78,13 +76,15 @@ class CreateRecipePopUp extends StatelessWidget with RecipeServiceFuncMix {
             Center(
               child: GeneralButton(
                 onPressedFun: () {
+                  print(recipeList!);
                   addRecipe(
                     Recipe(
-                        id: 1,
-                        name: nameTextEditingController.text,
-                        time: double.tryParse(timeTextEditingController.text),
-                        typeOfMeal: typeTextEditingController.text,
-                        description: descriptionTextEditingController.text),
+                      id: 1,
+                      name: "makarna", //nameTextEditingController.text,
+                      time: 15.0, //double.tryParse(timeTextEditingController.text),
+                      typeOfMeal: "ana yemek", //typeTextEditingController.text,
+                      description: "leziz",
+                    ), //descriptionTextEditingController.text),
                   );
                   bottomSheetRecipeCreate(context);
                   //go genel recipe list

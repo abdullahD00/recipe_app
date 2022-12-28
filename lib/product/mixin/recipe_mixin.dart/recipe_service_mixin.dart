@@ -5,13 +5,13 @@ import 'package:recipe/view/home/recipe/model/recipe.dart';
 import 'package:recipe/view/home/recipe/service/recipe_service.dart';
 
 mixin RecipeServiceFuncMix implements IRecipeService {
-  var myDio = Dio(BaseOptions(baseUrl: 'https://localhost:8080/api/food'));
+  var myDio = Dio(BaseOptions(baseUrl: 'localhost:8080/api/'));
 
-  List<Recipe>? recipeList;
+  List<Recipe>? recipeList = [];
   @override
   Future<List<Recipe>?> findAllFood() async {
     try {
-      final response = await myDio.get(RecipeServicePaths.recipe.name);
+      final response = await myDio.get(RecipeServicePaths.food.name);
 
       final datas = response.data;
       if (datas is List) {
@@ -26,7 +26,13 @@ mixin RecipeServiceFuncMix implements IRecipeService {
   @override
   Future<void> addRecipe(Recipe myRecipe) async {
     try {
-      final response = await myDio.post(RecipeServicePaths.recipe.name, data: myRecipe);
+      var myResponse = await myDio.post(RecipeServicePaths.food.name, data: {
+        'id': 1,
+        'name': 'makarna',
+        'description': 'nice food',
+        'time': 15.0,
+        'typeOfMeal': 'nice food two',
+      });
     } on DioError catch (error) {
       _ShowDebug.showDioError(error, this);
     }
@@ -35,7 +41,7 @@ mixin RecipeServiceFuncMix implements IRecipeService {
   @override
   Future<void> deleteRecipeById(int id) async {
     try {
-      final response = await myDio.delete('${RecipeServicePaths.recipe.name}/$id');
+      var myResponse = await myDio.delete('${RecipeServicePaths.food.name}/$id');
     } on DioError catch (error) {
       _ShowDebug.showDioError(error, this);
     }
@@ -44,7 +50,7 @@ mixin RecipeServiceFuncMix implements IRecipeService {
   @override
   Future<void> updateRecipe(Recipe myCurrentRecipe, int id) async {
     try {
-      final response = await myDio.put('${RecipeServicePaths.recipe.name}/$id', data: myCurrentRecipe);
+      var myResponse = await myDio.put('${RecipeServicePaths.food.name}/$id', data: myCurrentRecipe);
     } on DioError catch (error) {
       _ShowDebug.showDioError(error, this);
     }

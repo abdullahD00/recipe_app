@@ -33,6 +33,8 @@ class Gradienttextfield extends StatefulWidget {
 class _GradienttextfieldState extends State<Gradienttextfield> {
   @override
   Widget build(BuildContext context) {
+    print("textfield log");
+    print(widget.fontSize);
     return Padding(
       padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 15),
       child: Container(

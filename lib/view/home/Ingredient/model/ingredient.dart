@@ -1,7 +1,7 @@
 class Ingredient {
   int? id;
   String? name;
-  double? amount;
+  int? amount;
 
   Ingredient({this.id, this.name, this.amount});
 
