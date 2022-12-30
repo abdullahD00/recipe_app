@@ -76,7 +76,12 @@ class CreateRecipePopUp extends StatelessWidget with RecipeServiceFuncMix {
             Center(
               child: GeneralButton(
                 onPressedFun: () {
-                  const CreateIngredientPopUp();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CreateIngredientPopUp(),
+                    ),
+                  );
                 },
                 buttonWidget: Text(
                   "INGREDIENT",
@@ -92,12 +97,7 @@ class CreateRecipePopUp extends StatelessWidget with RecipeServiceFuncMix {
               child: GeneralButton(
                 onPressedFun: () {
                   print(recipeList!);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const CreateIngredientPopUp(),
-                    ),
-                  );
+
                   // addRecipe(
                   //   Recipe(
                   //     id: 1,

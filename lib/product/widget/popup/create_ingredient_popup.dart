@@ -5,7 +5,6 @@ import 'package:recipe/core/constant/color/color_const.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:recipe/core/widget/button/customized_button.dart';
 import 'package:recipe/core/widget/textfield/gradient_textfield.dart';
-import 'package:recipe/product/widget/popup/create_recipe_popup.dart';
 
 class CreateIngredientPopUp extends StatefulWidget {
   const CreateIngredientPopUp({super.key});
@@ -34,6 +33,12 @@ void clearAllList() {
 }
 
 class _CreateIngredientPopUpState extends State<CreateIngredientPopUp> {
+  @override
+  void initState() {
+    super.initState();
+    currentValue = 0;
+  }
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -76,6 +81,7 @@ class _CreateIngredientPopUpState extends State<CreateIngredientPopUp> {
               onChanged: (value) {
                 setState(() {
                   currentValue = value;
+                  clearAllList();
                 });
               },
             ),
@@ -88,7 +94,6 @@ class _CreateIngredientPopUpState extends State<CreateIngredientPopUp> {
         child: ListView.builder(
           itemCount: currentValue,
           itemBuilder: (context, index) {
-            clearAllList();
             addItemToList(currentValue);
             return Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
@@ -140,12 +145,12 @@ class _CreateIngredientPopUpState extends State<CreateIngredientPopUp> {
             Center(
               child: GeneralButton(
                 onPressedFun: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CreateRecipePopUp(),
-                    ),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => CreateRecipePopUp(),
+                  //   ),
+                  // );
                   print(textEditingList);
                   print(dropDownAmountList);
                 },

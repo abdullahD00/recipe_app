@@ -6,7 +6,7 @@ import 'package:recipe/view/home/recipe/service/recipe_service.dart';
 
 mixin RecipeServiceFuncMix implements IRecipeService {
   var myDio = Dio(BaseOptions(baseUrl: 'localhost:8080/api/food/'));
-
+  Response? myResponse;
   List<Recipe>? recipeList = [];
   @override
   Future<List<Recipe>?> findAllFood() async {
@@ -26,7 +26,7 @@ mixin RecipeServiceFuncMix implements IRecipeService {
   @override
   Future<void> addRecipe(Recipe myRecipe) async {
     try {
-      var myResponse = await myDio.post(RecipeServiceOperations.add.name, data: myRecipe);
+      myResponse = await myDio.post(RecipeServiceOperations.add.name, data: myRecipe);
     } on DioError catch (error) {
       _ShowDebug.showDioError(error, this);
     }
@@ -35,7 +35,7 @@ mixin RecipeServiceFuncMix implements IRecipeService {
   @override
   Future<void> deleteRecipeById(int id) async {
     try {
-      var myResponse = await myDio.delete('${RecipeServicePaths.food.name}/$id');
+      myResponse = await myDio.delete('${RecipeServicePaths.food.name}/$id');
     } on DioError catch (error) {
       _ShowDebug.showDioError(error, this);
     }
@@ -44,7 +44,7 @@ mixin RecipeServiceFuncMix implements IRecipeService {
   @override
   Future<void> updateRecipe(Recipe myCurrentRecipe, int id) async {
     try {
-      var myResponse = await myDio.put('${RecipeServicePaths.food.name}/$id', data: myCurrentRecipe);
+      myResponse = await myDio.put('${RecipeServicePaths.food.name}/$id', data: myCurrentRecipe);
     } on DioError catch (error) {
       _ShowDebug.showDioError(error, this);
     }

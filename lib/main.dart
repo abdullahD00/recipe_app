@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:recipe/core/base/size/model/screensize_model.dart';
-import 'package:recipe/product/widget/popup/create_ingredient_popup.dart';
 import 'package:recipe/view/authenticate/splash/model/splash_model.dart';
 // ignore: depend_on_referenced_packages
 import 'package:provider/provider.dart';
+import 'package:recipe/view/home/recipe_add/view/create_recipe_view.dart';
 
 main() {
   runApp(const MyApp());
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const CreateIngredientPopUp(),
+        home: const CreateRecipeView(),
       ),
     );
   }
