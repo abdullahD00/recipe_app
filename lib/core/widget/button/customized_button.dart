@@ -34,7 +34,7 @@ class _GeneralButtonState extends State<GeneralButton> {
             backgroundColor: widget.buttonColor ?? RecipeColor.myPink,
             shape: const StadiumBorder(),
           ),
-          child: widget.buttonWidget,
+          child: Center(child: widget.buttonWidget),
         ),
       ),
     );

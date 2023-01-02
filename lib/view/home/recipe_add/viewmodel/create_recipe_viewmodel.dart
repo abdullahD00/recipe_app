@@ -27,7 +27,7 @@ abstract class CreateRecipeViewModel extends State<CreateRecipeView> {
   TextStyle textFieldHintText() {
     return TextStyle(
       fontSize: 15,
-      fontWeight: FontWeight.w300,
+      fontWeight: FontWeight.w400,
       color: RecipeColor.darkPink,
     );
   }
