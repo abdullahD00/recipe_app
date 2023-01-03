@@ -7,7 +7,7 @@ import 'package:recipe/core/constant/color/color_const.dart';
 import 'package:recipe/core/widget/button/customized_button.dart';
 import 'package:recipe/core/widget/textfield/gradient_textfield.dart';
 import 'package:recipe/product/enum/textfield_hinttext.dart';
-import 'package:recipe/product/mixin/recipe_mixin.dart/recipe_service_mixin.dart';
+import 'package:recipe/product/mixin/recipe_mixin/recipe_service_mixin.dart';
 import 'package:recipe/product/widget/popup/create_ingredient_popup.dart';
 import 'package:recipe/product/widget/snackbar/bottomsheet_recipe_create.dart';
 

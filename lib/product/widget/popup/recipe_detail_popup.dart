@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipe/core/constant/color/color_const.dart';
-import 'package:recipe/product/mixin/recipe_mixin.dart/recipe_service_mixin.dart';
+import 'package:recipe/product/mixin/recipe_mixin/recipe_service_mixin.dart';
 
 // ignore: must_be_immutable
 class RecipeDetailPopUp extends StatelessWidget with RecipeServiceFuncMix {

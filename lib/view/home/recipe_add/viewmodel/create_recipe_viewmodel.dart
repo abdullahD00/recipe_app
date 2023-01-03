@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:recipe/core/constant/color/color_const.dart';
-import 'package:recipe/product/mixin/recipe_mixin.dart/recipe_service_mixin.dart';
+import 'package:recipe/product/mixin/recipe_mixin/recipe_service_mixin.dart';
 import 'package:recipe/view/home/Ingredient/model/ingredient.dart';
 import 'package:recipe/view/home/recipe_add/view/create_recipe_view.dart';
 

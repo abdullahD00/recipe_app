@@ -102,7 +102,9 @@ class _CreateRecipeViewState extends CreateRecipeViewModel {
               Align(
                 alignment: Alignment.centerLeft,
                 child: GeneralButton(
-                  onPressedFun: () {},
+                  onPressedFun: () {
+                    addIngredientToList();
+                  },
                   buttonWidget: const Text("ADD INGREDIENT"),
                   heightButton: 50,
                   widthButton: 150,
@@ -112,8 +114,9 @@ class _CreateRecipeViewState extends CreateRecipeViewModel {
                 height: 400,
                 width: Provider.of<ScreenSize>(context).getWidth(context),
                 child: ListView.builder(
-                  itemCount: 3,
+                  itemCount: myIngredientList!.length,
                   itemBuilder: (context, index) {
+                    addTextEditingItemToList(index);
                     return Slidable(
                       endActionPane: ActionPane(
                         motion: Container(
@@ -132,9 +135,11 @@ class _CreateRecipeViewState extends CreateRecipeViewModel {
                         ),
                         children: [
                           SlidableAction(
-                            onPressed: (context) {},
-                            backgroundColor: const Color(0xFFFE4A49),
-                            foregroundColor: Colors.white,
+                            onPressed: (context) {
+                              deleteIngredient(index);
+                            },
+                            backgroundColor: RecipeColor.myPink,
+                            foregroundColor: RecipeColor.white,
                             icon: Icons.delete,
                             label: 'Delete',
                           ),
@@ -143,6 +148,7 @@ class _CreateRecipeViewState extends CreateRecipeViewModel {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 25),
                         child: IngredientCard(
+                          myController: myTextEditingList[index],
                           ingredientTextStyle: textFieldHintText(),
                           textFieldDecoration: textFieldDecoration(
                             "Ingredient:",
@@ -164,7 +170,7 @@ class _CreateRecipeViewState extends CreateRecipeViewModel {
                         time: double.parse(timeTextEditingController.text),
                         typeOfMeal: typeTextEditingController.text,
                         description: descriptionTextEditingController.text,
-                        ingredients: ingredientList,
+                        ingredients: myIngredientList,
                       ),
                     );
                   },
