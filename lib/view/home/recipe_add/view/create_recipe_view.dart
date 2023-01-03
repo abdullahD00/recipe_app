@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 import 'package:recipe/core/base/size/model/screensize_model.dart';
 import 'package:recipe/core/constant/color/color_const.dart';
 import 'package:recipe/core/widget/button/customized_button.dart';
 import 'package:recipe/product/widget/card/ingredient_card/view/ingredient_card_view.dart';
+import 'package:recipe/view/home/recipe/model/recipe.dart';
 import 'package:recipe/view/home/recipe_add/viewmodel/create_recipe_viewmodel.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -24,7 +26,7 @@ class _CreateRecipeViewState extends CreateRecipeViewModel {
         leading: IconButton(
           onPressed: () {
             goBackPage(context);
-            clearRecipeValue();
+            clearTextEditingRecipeValue();
           },
           icon: Icon(
             Icons.backspace,
@@ -51,6 +53,8 @@ class _CreateRecipeViewState extends CreateRecipeViewModel {
                   height: 60,
                   width: 400,
                   child: TextField(
+                    keyboardType: TextInputType.multiline,
+                    maxLines: null,
                     controller: nameTextEditingController,
                     decoration: textFieldDecoration("Name:", FontAwesomeIcons.pen),
                   ),
@@ -62,6 +66,8 @@ class _CreateRecipeViewState extends CreateRecipeViewModel {
                   height: 60,
                   width: 400,
                   child: TextField(
+                    keyboardType: TextInputType.multiline,
+                    maxLines: null,
                     controller: timeTextEditingController,
                     decoration: textFieldDecoration("Time:", FontAwesomeIcons.clock),
                   ),
@@ -73,6 +79,8 @@ class _CreateRecipeViewState extends CreateRecipeViewModel {
                   height: 60,
                   width: 400,
                   child: TextField(
+                    keyboardType: TextInputType.multiline,
+                    maxLines: null,
                     controller: typeTextEditingController,
                     decoration: textFieldDecoration("Type:", FontAwesomeIcons.typo3),
                   ),
@@ -84,6 +92,8 @@ class _CreateRecipeViewState extends CreateRecipeViewModel {
                   height: 60,
                   width: 400,
                   child: TextField(
+                    keyboardType: TextInputType.multiline,
+                    maxLines: null,
                     controller: descriptionTextEditingController,
                     decoration: textFieldDecoration("Description:", FontAwesomeIcons.book),
                   ),
@@ -104,40 +114,68 @@ class _CreateRecipeViewState extends CreateRecipeViewModel {
                 child: ListView.builder(
                   itemCount: 3,
                   itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 25),
-                      child: IngredientCard(
-                        ingredientTextStyle: textFieldHintText(),
-                        textFieldDecoration: textFieldDecoration(
-                          "Ingredient:",
-                          FontAwesomeIcons.kitchenSet,
+                    return Slidable(
+                      endActionPane: ActionPane(
+                        motion: Container(
+                          height: 400,
+                          width: Provider.of<ScreenSize>(context).getWidth(context),
+                          color: RecipeColor.lightPink,
+                          child: IconButton(
+                            onPressed: () {},
+                            icon: IconButton(
+                              onPressed: () {},
+                              icon: const Icon(Icons.delete),
+                              color: RecipeColor.darkPink,
+                              iconSize: 40,
+                            ),
+                          ),
+                        ),
+                        children: [
+                          SlidableAction(
+                            onPressed: (context) {},
+                            backgroundColor: const Color(0xFFFE4A49),
+                            foregroundColor: Colors.white,
+                            icon: Icons.delete,
+                            label: 'Delete',
+                          ),
+                        ],
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 25),
+                        child: IngredientCard(
+                          ingredientTextStyle: textFieldHintText(),
+                          textFieldDecoration: textFieldDecoration(
+                            "Ingredient:",
+                            FontAwesomeIcons.kitchenSet,
+                          ),
                         ),
                       ),
                     );
                   },
                 ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: GeneralButton(
+                  onPressedFun: () {
+                    addRecipe(
+                      Recipe(
+                        name: nameTextEditingController.text,
+                        time: double.parse(timeTextEditingController.text),
+                        typeOfMeal: typeTextEditingController.text,
+                        description: descriptionTextEditingController.text,
+                        ingredients: ingredientList,
+                      ),
+                    );
+                  },
+                  buttonWidget: const Text("ADD"),
+                  heightButton: 50,
+                  widthButton: 150,
+                ),
               )
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  InputDecoration textFieldDecoration(String labelText, IconData suffixIcon) {
-    return InputDecoration(
-      labelText: labelText,
-      labelStyle: textFieldHintText(),
-      suffixIcon: Padding(
-        padding: const EdgeInsets.all(9.0),
-        child: FaIcon(suffixIcon, color: RecipeColor.darkPink),
-      ),
-      enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(
-          color: RecipeColor.darkPink,
-          width: 3,
-        ),
-        borderRadius: BorderRadius.circular(50.0),
       ),
     );
   }

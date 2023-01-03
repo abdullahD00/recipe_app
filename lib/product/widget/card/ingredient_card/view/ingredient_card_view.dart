@@ -37,7 +37,7 @@ class _IngredientCardState extends IngredientCardViewModel {
       width: widget.cardWight ?? Provider.of<ScreenSize>(context).getWidth(context),
       child: Card(
         color: RecipeColor.lightPink,
-        elevation: 30.0,
+        elevation: 20.0,
         shadowColor: RecipeColor.black,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
