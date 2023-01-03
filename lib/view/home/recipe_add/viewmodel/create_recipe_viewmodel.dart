@@ -10,7 +10,30 @@ abstract class CreateRecipeViewModel extends State<CreateRecipeView> with Recipe
   var timeTextEditingController = TextEditingController();
   var typeTextEditingController = TextEditingController();
   var descriptionTextEditingController = TextEditingController();
-  List<Ingredient>? ingredientList = [Ingredient()];
+  List<TextEditingController> myTextEditingList = [TextEditingController()];
+  List<Ingredient>? myIngredientList = [Ingredient()];
+
+  void addTextEditingItemToList(int index) {
+    for (var i = 0; i < index; i++) {
+      myTextEditingList.add(TextEditingController());
+    }
+  }
+
+  void puIngredientsToList() {
+    for (var i = 0; i < myTextEditingList.length; i++) {
+      myIngredientList![i].name = myTextEditingList[i].text;
+      // myIngredientList![i].amount=1;
+    }
+  }
+
+  void addIngredientToList() {
+    myIngredientList!.add(Ingredient());
+  }
+
+  void deleteIngredient(int index) {
+    myIngredientList!.removeAt(index);
+  }
+
   void goBackPage(BuildContext context) {
     Navigator.pop(context);
   }
