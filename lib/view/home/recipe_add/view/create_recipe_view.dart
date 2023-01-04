@@ -26,7 +26,6 @@ class _CreateRecipeViewState extends CreateRecipeViewModel {
         leading: IconButton(
           onPressed: () {
             goBackPage(context);
-            clearTextEditingRecipeValue();
           },
           icon: Icon(
             Icons.backspace,
@@ -103,7 +102,10 @@ class _CreateRecipeViewState extends CreateRecipeViewModel {
                 alignment: Alignment.centerLeft,
                 child: GeneralButton(
                   onPressedFun: () {
-                    addIngredientToList();
+                    setState(() {
+                      addIngredientToList();
+                      addTextEditingItemToList();
+                    });
                   },
                   buttonWidget: const Text("ADD INGREDIENT"),
                   heightButton: 50,
@@ -116,7 +118,6 @@ class _CreateRecipeViewState extends CreateRecipeViewModel {
                 child: ListView.builder(
                   itemCount: myIngredientList!.length,
                   itemBuilder: (context, index) {
-                    addTextEditingItemToList(index);
                     return Slidable(
                       endActionPane: ActionPane(
                         motion: Container(
@@ -124,7 +125,14 @@ class _CreateRecipeViewState extends CreateRecipeViewModel {
                           width: Provider.of<ScreenSize>(context).getWidth(context),
                           color: RecipeColor.lightPink,
                           child: IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              setState(
+                                () {
+                                  deleteIngredient(index);
+                                  print("delete tiklandi!");
+                                },
+                              );
+                            },
                             icon: IconButton(
                               onPressed: () {},
                               icon: const Icon(Icons.delete),
@@ -135,9 +143,7 @@ class _CreateRecipeViewState extends CreateRecipeViewModel {
                         ),
                         children: [
                           SlidableAction(
-                            onPressed: (context) {
-                              deleteIngredient(index);
-                            },
+                            onPressed: (context) {},
                             backgroundColor: RecipeColor.myPink,
                             foregroundColor: RecipeColor.white,
                             icon: Icons.delete,
@@ -148,6 +154,7 @@ class _CreateRecipeViewState extends CreateRecipeViewModel {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 25),
                         child: IngredientCard(
+                          saveIngredientFunc: saveIngredient(index),
                           myController: myTextEditingList[index],
                           ingredientTextStyle: textFieldHintText(),
                           textFieldDecoration: textFieldDecoration(
@@ -164,15 +171,18 @@ class _CreateRecipeViewState extends CreateRecipeViewModel {
                 padding: const EdgeInsets.all(20.0),
                 child: GeneralButton(
                   onPressedFun: () {
-                    addRecipe(
-                      Recipe(
-                        name: nameTextEditingController.text,
-                        time: double.parse(timeTextEditingController.text),
-                        typeOfMeal: typeTextEditingController.text,
-                        description: descriptionTextEditingController.text,
-                        ingredients: myIngredientList,
-                      ),
-                    );
+                    setState(() {
+                      addRecipe(
+                        Recipe(
+                          name: nameTextEditingController.text,
+                          time: double.parse(timeTextEditingController.text),
+                          typeOfMeal: typeTextEditingController.text,
+                          description: descriptionTextEditingController.text,
+                          ingredients: [],
+                        ),
+                      );
+                      clearTextEditingRecipeValue();
+                    });
                   },
                   buttonWidget: const Text("ADD"),
                   heightButton: 50,

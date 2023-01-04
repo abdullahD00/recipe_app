@@ -1,7 +1,9 @@
-class Ingredient {
+import 'package:flutter/widgets.dart';
+
+class Ingredient extends ChangeNotifier {
   int? id;
   String? name;
-  int? amount;
+  double? amount;
 
   Ingredient({this.id, this.name, this.amount});
 

@@ -96,8 +96,6 @@ class CreateRecipePopUp extends StatelessWidget with RecipeServiceFuncMix {
             Center(
               child: GeneralButton(
                 onPressedFun: () {
-                  print(recipeList!);
-
                   // addRecipe(
                   //   Recipe(
                   //     id: 1,

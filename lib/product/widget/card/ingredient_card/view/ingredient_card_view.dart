@@ -4,6 +4,7 @@ import 'package:recipe/core/base/size/model/screensize_model.dart';
 import 'package:recipe/core/constant/color/color_const.dart';
 import 'package:recipe/core/widget/button/customized_button.dart';
 import 'package:recipe/product/widget/card/ingredient_card/viewmodel/ingredient_card_viewmodel.dart';
+import 'package:recipe/view/home/Ingredient/model/ingredient.dart';
 
 // ignore: must_be_immutable
 class IngredientCard extends StatefulWidget {
@@ -27,11 +28,10 @@ class IngredientCard extends StatefulWidget {
   State<IngredientCard> createState() => _IngredientCardState();
 }
 
-double? counter = 0;
-
 class _IngredientCardState extends IngredientCardViewModel {
   @override
   Widget build(BuildContext context) {
+    double? counter = Provider.of<Ingredient>(context).amount;
     return SizedBox(
       height: widget.cardHeight ?? 133,
       width: widget.cardWight ?? Provider.of<ScreenSize>(context).getWidth(context),
@@ -61,9 +61,12 @@ class _IngredientCardState extends IngredientCardViewModel {
                   padding: const EdgeInsets.only(top: 15.0),
                   child: GeneralButton(
                     onPressedFun: () {
-                      setState(() {
-                        counter = counter! + 0.5;
-                      });
+                      setState(
+                        () {
+                          counter = counter! + 0.5;
+                          widget.saveIngredientFunc;
+                        },
+                      );
                     },
                     buttonWidget: const Text("+"),
                     heightButton: 35,
@@ -73,7 +76,9 @@ class _IngredientCardState extends IngredientCardViewModel {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 8.0),
                   child: Text(
-                    counter.toString(),
+                    Provider.of<Ingredient>(
+                      context,
+                    ).amount.toString(),
                     style: widget.ingredientTextStyle,
                   ),
                 ),
@@ -81,9 +86,12 @@ class _IngredientCardState extends IngredientCardViewModel {
                   padding: const EdgeInsets.only(top: 15.0),
                   child: GeneralButton(
                     onPressedFun: () {
-                      setState(() {
-                        counter = counter! - 0.5;
-                      });
+                      setState(
+                        () {
+                          counter = counter! - 0.5;
+                          widget.saveIngredientFunc;
+                        },
+                      );
                     },
                     buttonWidget: const Text("-"),
                     heightButton: 35,

@@ -5,11 +5,10 @@ import 'package:recipe/view/home/recipe/view/recipe_view.dart';
 abstract class RecipeViewModel extends State<RecipeView> with RecipeServiceFuncMix {
   @override
   void initState() {
-    findAllFood().then((value) {
-      setState(() {
-        recipeList != value;
-      });
-    });
+    findAllFood().then((value) => (value) {
+          recipeList = value!;
+        });
+    //  findAllFood().then((value) => recipeList != value);
     super.initState();
   }
 }
